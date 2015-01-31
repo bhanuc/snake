@@ -576,6 +576,7 @@
         if(snakeXStep == food.x && snakeYStep == food.y)
         {
           tail = {x: snakeXStep, y: snakeYStep};  
+          console.log("1", tail);
           // create_food();
           var obj = JSON.parse(localStorage.getItem("user"));
           if(obj.id == 2)
@@ -596,6 +597,7 @@
         }else
         {
           tail = snake_array.pop();
+          console.log("1", tail);
           tail.x = snakeXStep;
           tail.y = snakeYStep;
         }
@@ -657,6 +659,7 @@
         {
           nextTail = {x: snakeNextXStep, y: snakeNextYStep};  
           // create_food();
+          console.log("2", nextTail);
           var obj = JSON.parse(localStorage.getItem("user"));
           if(obj.id == 2)
           create_newfood();
@@ -676,6 +679,7 @@
         }else
         {
           nextTail = snake_next_array.pop();
+          console.log("2", nextTail);
           nextTail.x = snakeNextXStep;
           nextTail.y = snakeNextYStep;
         }
