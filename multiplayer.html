@@ -1155,26 +1155,38 @@
             if(id == 1){
               var currentTimeStampDif = currentTimeStamp - lastKeyPressTimeStamp;
               if( key == 39  && keyPressed != "left" && keyPressed != "right" && currentTimeStampDif>timeStampDif){
-                snake_array = data.snake;
+                //snake_array = data.snake;
+                snake_array[0] = data.snake[0];
+                setSnakeCube();
+                setNextSnakeCube();
                 keyPressed = "right";  
                 lastArrowKeyPressed = keyPressed;
                 lastKeyPressTimeStamp = currentTimeStamp;
                 
               }
               else if(key == 37  && keyPressed != "right" && keyPressed != "left" && currentTimeStampDif>timeStampDif){
-                snake_array = data.snake;
+                //snake_array = data.snake;
+                snake_array[0] = data.snake[0];
+                setSnakeCube();
+                setNextSnakeCube();
                 keyPressed = "left";  
                 lastArrowKeyPressed = keyPressed;
                 lastKeyPressTimeStamp = currentTimeStamp;
               }
               else if(key == 38  && keyPressed != "down" && keyPressed != "up" && currentTimeStampDif>timeStampDif){
-                snake_array = data.snake;
+                //snake_array = data.snake;
+                snake_array[0] = data.snake[0];
+                setSnakeCube();
+                setNextSnakeCube();
                 keyPressed = "up";  
                 lastArrowKeyPressed = keyPressed;
                 lastKeyPressTimeStamp = currentTimeStamp;
               }
               else if(key == 40 && keyPressed != "up" && keyPressed != "down" && currentTimeStampDif>timeStampDif){
-                snake_array = data.snake;
+                //snake_array = data.snake;
+                snake_array[0] = data.snake[0];
+                setSnakeCube();
+                setNextSnakeCube();
                 keyPressed = "down";  
                 lastArrowKeyPressed = keyPressed;
                 lastKeyPressTimeStamp = currentTimeStamp;
@@ -1183,26 +1195,38 @@
                 
                 var currentNextTimeStampDif = currentTimeStamp - lastNextKeyPressTimeStamp;
                 if( key == 39  && keyNextPressed != "left" && keyNextPressed != "right" && currentNextTimeStampDif>timeStampDif){
-                  snake_next_array = data.snake;
+                  // snake_next_array = data.snake;
+                  snake_next_array[0] = data.snake[0];
+                  setSnakeCube();
+                setNextSnakeCube();
                   keyNextPressed = "right";  
                   lastNextArrowKeyPressed = keyNextPressed;
                   lastNextKeyPressTimeStamp = currentTimeStamp;
                   
                 }
                 else if(key == 37  && keyNextPressed != "right" && keyNextPressed != "left" && currentNextTimeStampDif>timeStampDif){
-                  snake_next_array = data.snake;
+                  // snake_next_array = data.snake;
+                  snake_next_array[0] = data.snake[0];
+                  setSnakeCube();
+                setNextSnakeCube();
                   keyNextPressed = "left";  
                   lastNextArrowKeyPressed = keyNextPressed;
                   lastNextKeyPressTimeStamp = currentTimeStamp;
                 }
                 else if(key == 38  && keyNextPressed != "down" && keyNextPressed != "up" && currentNextTimeStampDif>timeStampDif){
-                  snake_next_array = data.snake;
+                  // snake_next_array = data.snake;
+                  snake_next_array[0] = data.snake[0];
+                  setSnakeCube();
+                setNextSnakeCube();
                   keyNextPressed = "up";  
                   lastNextArrowKeyPressed = keyNextPressed;
                   lastNextKeyPressTimeStamp = currentTimeStamp;
                 }
                 else if(key == 40 && keyNextPressed != "up" && keyNextPressed != "down" && currentNextTimeStampDif>timeStampDif){
-                  snake_next_array = data.snake;
+                  // snake_next_array = data.snake;
+                  snake_next_array[0] = data.snake[0];
+                  setSnakeCube();
+                setNextSnakeCube();
                   keyNextPressed = "down";  
                   lastNextArrowKeyPressed = keyNextPressed;
                   lastNextKeyPressTimeStamp = currentTimeStamp;
