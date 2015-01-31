@@ -354,7 +354,7 @@
     <script>
     
       var container;
-      
+      var stats;
       var messageBox;
       
       var camera, cameraWithSnake, scene, renderer;    
@@ -690,7 +690,7 @@
         container = $( "#canvasframe" )[0];
         messageBox = $("#helpmessage");
       
-        var stats = new Stats();
+        stats = new Stats();
         stats.domElement.style.position = 'absolute';
         stats.domElement.style.left = '10px';
         stats.domElement.style.top = '390px';
@@ -737,6 +737,12 @@
         
         foodGroup = new THREE.Object3D();
         scene.add( foodGroup );
+
+        var geometry2 = new THREE.CubeGeometry( 600, 600, 600 );
+        var material2 = new THREE.MeshLambertMaterial({ map: foodCubeTexture });
+        var cube = new THREE.Mesh( geometry2, material2 );
+        scene.add( cube );
+
         
         lightGroup = new THREE.Object3D();
         scene.add( lightGroup );
