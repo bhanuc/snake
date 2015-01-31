@@ -217,7 +217,7 @@
       var scoreBoardGroup, displayMenuGroup;
       var scoreNextBoardGroup;
       
-      var scoreTextMesh;
+      var scoreTextMesh, scoreNextTextMesh;
       
       var spotLightGroup;
       var spotLightColorArray = [0xffffff, 0xff00ff, 0xff0000, 0x00ff00];
@@ -673,8 +673,8 @@
           snakeCube.receiveShadow = true;
           snakeNextGroup.add(snakeCube);
       
-          //removeScoreTextGeometry();
-          //setScoreTextGeometry(10*foodNextScore);
+          removeScoreTextGeometry();
+          setNextScoreTextGeometry(10*foodNextScore);
           
         }else
         {
@@ -910,8 +910,9 @@
           scoreBoardGroup.add(scorePlatformCube);
 
         setScoreTextLabelGeometry();
+        setNextScoreTextLabelGeometry();
         setScoreTextGeometry(foodScore);
-    
+        setNextScoreTextGeometry(foodNextScore);
       }
       
       function setScoreTextLabelGeometry(){
@@ -924,6 +925,18 @@
           scoreTextMesh.receiveShadow = true;
           scoreTextMesh.position.set((platformWidth-scorePlatformWidth)*3/2-snakeCubeSize*3, snakeCubeSize*3.2, -snakeCubeSize);
           scoreBoardGroup.add(scoreTextMesh);
+      }
+
+      function setNextScoreTextLabelGeometry(){
+        
+          var scorePlatformWidth = platformWidth/1.5;
+          var textMaterial = new THREE.MeshBasicMaterial({ color: 0x00bbbb });
+                    
+          scoreNextTextMesh = new THREE.Mesh( getTextGeometry("Score", "gentilis"), textMaterial );
+          scoreNextTextMesh.castShadow = true;
+          scoreNextTextMesh.receiveShadow = true;
+          scoreNextTextMesh.position.set((platformWidth-scorePlatformWidth)*3/2+snakeCubeSize*3, snakeCubeSize*3.2, -snakeCubeSize);
+          scoreBoardGroup.add(scoreNextTextMesh);
       }
       
       function setScoreTextGeometry(scoreString){
@@ -938,10 +951,25 @@
           scoreBoardGroup.add(scoreTextMesh);
       }
       
+      function setNextScoreTextGeometry(scoreString){
+        
+          var scorePlatformWidth = platformWidth/1.5;
+          var textMaterial = new THREE.MeshBasicMaterial({ color: 0x00cc00 });
+          
+          scoreNextTextMesh = new THREE.Mesh( getTextGeometry(scoreString, "gentilis"), textMaterial );
+          scoreNextTextMesh.castShadow = true;
+          scoreNextTextMesh.receiveShadow = true;
+          scoreNextTextMesh.position.set((platformWidth-scorePlatformWidth)*3/2-snakeCubeSize*6, snakeCubeSize*3.2, -snakeCubeSize);
+          scoreBoardGroup.add(scoreNextTextMesh);
+      }
+
       function removeScoreTextGeometry(){
         scoreBoardGroup.remove( scoreTextMesh );
       }
-      
+      function removeNextScoreTextGeometry(){
+        scoreBoardGroup.remove( scoreNextTextMesh );
+      }
+
       function getTextGeometry(textStr, fontType){
         var textGeometry = new THREE.TextGeometry(textStr, {
 
@@ -1141,6 +1169,8 @@
                 
               removeScoreTextGeometry();
               setScoreTextGeometry(10*foodScore);
+              removeNextScoreTextGeometry();
+              setNextScoreTextGeometry(10*foodNextScore);
               
                 
               pauseFlag = 0;  
