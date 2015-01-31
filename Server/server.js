@@ -140,8 +140,7 @@ wss.on('connection', function (ws) {
                         if(minas){
                             minas =0;
                             var rooma =mess.room; 
-                                var random = setTimeout(function() {
-                                    console.log(rooma)
+                                var k = setInterval( function(){                                  
                                   room[rooma][0].ws.send(JSON.stringify({"type": "render"}))
                                   room[rooma][1].ws.send(JSON.stringify({"type": "render"}))
                              }, 300);
