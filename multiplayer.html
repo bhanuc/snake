@@ -871,7 +871,7 @@
           if(!(gameOverFlag > 0)){
             keyPressed = "P";
             pauseFlag = 1;
-            render();
+            // render();
             
             alertVisibleFlag = 1;
             triggerAnimation("animated bounce", 1, gameResumeString);
@@ -999,7 +999,7 @@
       
       function animate() {
         requestAnimationFrame( animate );
-        render();
+        // render();
       //  checkKeyboardStroke();
         stats.update();
       }
@@ -1251,6 +1251,17 @@
           foodCube.scale.y = 0.5;
           foodCube.scale.z = 0.5;
           foodGroup.add(foodCube);
+        } else if(data.type == "render"){
+            if(pauseFlag==0 && gameOverFlag==0){
+            setSnakeCube();
+            setNextSnakeCube();
+            checkLevelRatio();
+          }
+          
+          cumulatedFrameTime = 0;
+          lastFrameTime = time;
+          rotateFood();
+          renderer.render(scene, camera);
         }
       };
       //console.log("1");
