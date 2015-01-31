@@ -121,7 +121,9 @@
     <link rel="stylesheet" href="css/animate.css">
     <script>
      function start_room(){
-        ws.send(JSON.stringify({type: "join", name: $("#name").val(), room: $("#room").val() }))
+      var a = {type: "join", name: $("#name").val(), room: $("#room").val() };
+        console.log(JSON.stringify(a));
+        ws.send(JSON.stringify(a));
       }
     $(window).load(function() {
       localStorage.setItem("user",JSON.stringify({value:false}));
