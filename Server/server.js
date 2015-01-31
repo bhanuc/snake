@@ -164,12 +164,14 @@ wss.on('connection', function (ws) {
                         if (mess.hasOwnProperty('room')) {
                             room[mess.room][0].ws.send(JSON.stringify({
                                 "type": "position",
+                                "position": mess.position,
                                 "keyPress": mess.keyPress,
                                 "name": mess.name,
                                 "id": mess.id
                             }));
                             room[mess.room][1].ws.send(JSON.stringify({
                                 "type": "position",
+                                "position": mess.position,
                                 "keyPress": mess.keyPress,
                                 "name": mess.name,
                                 "id": mess.id
