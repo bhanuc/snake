@@ -1153,49 +1153,56 @@
             var timeStampDif = 10;
 
             if(id == 1){
-              snake_array = data.snake;
               var currentTimeStampDif = currentTimeStamp - lastKeyPressTimeStamp;
               if( key == 39  && keyPressed != "left" && keyPressed != "right" && currentTimeStampDif>timeStampDif){
+                snake_array = data.snake;
                 keyPressed = "right";  
                 lastArrowKeyPressed = keyPressed;
                 lastKeyPressTimeStamp = currentTimeStamp;
                 
               }
               else if(key == 37  && keyPressed != "right" && keyPressed != "left" && currentTimeStampDif>timeStampDif){
+                snake_array = data.snake;
                 keyPressed = "left";  
                 lastArrowKeyPressed = keyPressed;
                 lastKeyPressTimeStamp = currentTimeStamp;
               }
               else if(key == 38  && keyPressed != "down" && keyPressed != "up" && currentTimeStampDif>timeStampDif){
+                snake_array = data.snake;
                 keyPressed = "up";  
                 lastArrowKeyPressed = keyPressed;
                 lastKeyPressTimeStamp = currentTimeStamp;
               }
               else if(key == 40 && keyPressed != "up" && keyPressed != "down" && currentTimeStampDif>timeStampDif){
+                snake_array = data.snake;
                 keyPressed = "down";  
                 lastArrowKeyPressed = keyPressed;
                 lastKeyPressTimeStamp = currentTimeStamp;
               }
             } else if(id == 2){ 
-                snake_next_array = data.snake;
+                
                 var currentNextTimeStampDif = currentTimeStamp - lastNextKeyPressTimeStamp;
                 if( key == 39  && keyNextPressed != "left" && keyNextPressed != "right" && currentNextTimeStampDif>timeStampDif){
+                  snake_next_array = data.snake;
                   keyNextPressed = "right";  
                   lastNextArrowKeyPressed = keyNextPressed;
                   lastNextKeyPressTimeStamp = currentTimeStamp;
                   
                 }
                 else if(key == 37  && keyNextPressed != "right" && keyNextPressed != "left" && currentNextTimeStampDif>timeStampDif){
+                  snake_next_array = data.snake;
                   keyNextPressed = "left";  
                   lastNextArrowKeyPressed = keyNextPressed;
                   lastNextKeyPressTimeStamp = currentTimeStamp;
                 }
                 else if(key == 38  && keyNextPressed != "down" && keyNextPressed != "up" && currentNextTimeStampDif>timeStampDif){
+                  snake_next_array = data.snake;
                   keyNextPressed = "up";  
                   lastNextArrowKeyPressed = keyNextPressed;
                   lastNextKeyPressTimeStamp = currentTimeStamp;
                 }
                 else if(key == 40 && keyNextPressed != "up" && keyNextPressed != "down" && currentNextTimeStampDif>timeStampDif){
+                  snake_next_array = data.snake;
                   keyNextPressed = "down";  
                   lastNextArrowKeyPressed = keyNextPressed;
                   lastNextKeyPressTimeStamp = currentTimeStamp;
