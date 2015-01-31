@@ -1155,16 +1155,16 @@
 
               gameOverFlag = 0;
                 
-              
+              removeScoreTextGeometry();
+              setScoreTextGeometry(10*foodScore);
+              removeNextScoreTextGeometry();
+              setNextScoreTextGeometry(10*foodNextScore);
               
                 
               pauseFlag = 0;  
             }
           }
-          removeScoreTextGeometry();
-              setScoreTextGeometry(10*foodScore);
-              removeNextScoreTextGeometry();
-              setNextScoreTextGeometry(10*foodNextScore);
+
           console.log(id);
           if(pauseFlag == 0)
           {
@@ -1277,6 +1277,10 @@
             checkLevelRatio();
           }
           
+          removeScoreTextGeometry();
+              setScoreTextGeometry(10*foodScore);
+              removeNextScoreTextGeometry();
+              setNextScoreTextGeometry(10*foodNextScore);
           // cumulatedFrameTime = 0;
           // lastFrameTime = time;
           rotateFood();
