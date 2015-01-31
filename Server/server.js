@@ -123,6 +123,7 @@ wss.on('connection', function (ws) {
                                 "type": "move",
                                 "move": mess.move,
                                 "name": mess.name,
+                                "snake": mess.snake,
                                 "id": mess.id
                             }));
                         } else {
