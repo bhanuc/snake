@@ -579,8 +579,11 @@
           console.log("1", tail);
           // create_food();
           var obj = JSON.parse(localStorage.getItem("user"));
-          if(obj.id == 2)
+          if(obj.id == 2){
           create_newfood();
+          var objtosend = {type:"add",id: 1, name: obj.name, room: obj.room, tail: tail};
+            ws.send(JSON.stringify(objtosend));
+          }
           
           foodScore++;
         
@@ -661,17 +664,19 @@
           // create_food();
           console.log("2", nextTail);
           var obj = JSON.parse(localStorage.getItem("user"));
-          if(obj.id == 2)
-          create_newfood();
-          
+          if(obj.id == 2){
+            create_newfood();
+            var objtosend = {type:"add",id: obj.id, name: obj.name, room: obj.room, tail: nextTail};
+            ws.send(JSON.stringify(objtosend));
+          }
           foodNextScore++;
         
-          var snakeCubeGeometry = new THREE.CubeGeometry(snakeCubeSize, snakeCubeSize, snakeCubeSize);
-          snakeCube = new THREE.Mesh(snakeCubeGeometry, snakeNextMaterial);
-          snakeCube.position.set( snakeCubeSize*nextTail.x, snakeCubeSize, snakeCubeSize*nextTail.y );
-          snakeCube.castShadow = true;
-          snakeCube.receiveShadow = true;
-          snakeNextGroup.add(snakeCube);
+          // var snakeCubeGeometry = new THREE.CubeGeometry(snakeCubeSize, snakeCubeSize, snakeCubeSize);
+          // snakeCube = new THREE.Mesh(snakeCubeGeometry, snakeNextMaterial);
+          // snakeCube.position.set( snakeCubeSize*nextTail.x, snakeCubeSize, snakeCubeSize*nextTail.y );
+          // snakeCube.castShadow = true;
+          // snakeCube.receiveShadow = true;
+          // snakeNextGroup.add(snakeCube);
       
           //removeScoreTextGeometry();
           //setScoreTextGeometry(10*foodNextScore);
@@ -1262,7 +1267,23 @@
           // lastFrameTime = time;
           rotateFood();
           renderer.render(scene, camera);
-        }
+        } else if(data.type == "add"){
+          var tail = data.tail
+          if(data.id ==1){
+            var snakeCubeGeometry = new THREE.CubeGeometry(snakeCubeSize, snakeCubeSize, snakeCubeSize);
+            snakeCube = new THREE.Mesh(snakeCubeGeometry, snakeMaterial);
+            snakeCube.position.set( snakeCubeSize*tail.x, snakeCubeSize, snakeCubeSize*tail.y );
+            snakeCube.castShadow = true;
+            snakeCube.receiveShadow = true;
+            snakeGroup.add(snakeCube);
+          } else if(data.id == 2){
+            var snakeCubeGeometry = new THREE.CubeGeometry(snakeCubeSize, snakeCubeSize, snakeCubeSize);
+            snakeCube = new THREE.Mesh(snakeCubeGeometry, snakeMaterial);
+            snakeCube.position.set( snakeCubeSize*tail.x, snakeCubeSize, snakeCubeSize*tail.y );
+            snakeCube.castShadow = true;
+            snakeCube.receiveShadow = true;
+          snakeNextGroup.add(snakeCube);
+          }
       };
       //console.log("1");
     </script>
