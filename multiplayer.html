@@ -910,7 +910,7 @@
           scoreBoardGroup.add(scorePlatformCube);
 
         setScoreTextLabelGeometry();
-        setNextScoreTextLabelGeometry();
+        //setNextScoreTextLabelGeometry();
         setScoreTextGeometry(foodScore);
         setNextScoreTextGeometry(foodNextScore);
       }
@@ -959,7 +959,7 @@
           scoreNextTextMesh = new THREE.Mesh( getTextGeometry(scoreString, "gentilis"), textMaterial );
           scoreNextTextMesh.castShadow = true;
           scoreNextTextMesh.receiveShadow = true;
-          scoreNextTextMesh.position.set((platformWidth-scorePlatformWidth)*3/2-snakeCubeSize*6, snakeCubeSize*3.2, -snakeCubeSize);
+          scoreNextTextMesh.position.set((platformWidth-scorePlatformWidth)*3/2+snakeCubeSize*1, snakeCubeSize*3.2, -snakeCubeSize);
           scoreBoardGroup.add(scoreNextTextMesh);
       }
 
