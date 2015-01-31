@@ -603,9 +603,7 @@
           console.log("1", tail);
           tail.x = snakeXStep;
           tail.y = snakeYStep;
-        }
-        
-        snake_array.unshift(tail);
+          snake_array.unshift(tail);
         var snakeCubeArray = snakeGroup.children;
       
         for(var i=0; i<snakeCubeArray.length; i++){
@@ -619,6 +617,9 @@
           
           snakeCube.position.set( snakeCubePosition.x, snakeCubePosition.y, snakeCubePosition.z);
         }
+        }
+        
+        
       }
 
       function setNextSnakeCube(){
@@ -687,9 +688,7 @@
           console.log("2", nextTail);
           nextTail.x = snakeNextXStep;
           nextTail.y = snakeNextYStep;
-        }
-        
-        snake_next_array.unshift(nextTail);
+          snake_next_array.unshift(nextTail);
         var snakeCubeArray = snakeNextGroup.children;
       
         for(var i=0; i<snakeCubeArray.length; i++){
@@ -703,6 +702,9 @@
           
           snakeCube.position.set( snakeCubePosition.x, snakeCubePosition.y, snakeCubePosition.z);
         }
+        }
+        
+        
       }
       
       function check_collision(x, y, array){
@@ -1276,6 +1278,21 @@
             snakeCube.castShadow = true;
             snakeCube.receiveShadow = true;
             snakeGroup.add(snakeCube);
+
+            snake_array.unshift(tail);
+        var snakeCubeArray = snakeGroup.children;
+      
+        for(var i=0; i<snakeCubeArray.length; i++){
+          
+          var snake_position = snake_array[i];
+          
+          snakeCube = snakeCubeArray[i];
+          var snakeCubePosition = snakeCube.position;
+          snakeCubePosition.x = snakeCubeSize*snake_position.x;
+          snakeCubePosition.z = snakeCubeSize*snake_position.y;
+          
+          snakeCube.position.set( snakeCubePosition.x, snakeCubePosition.y, snakeCubePosition.z);
+        }
           } else if(data.id == 2){
             var snakeCubeGeometry = new THREE.CubeGeometry(snakeCubeSize, snakeCubeSize, snakeCubeSize);
             snakeCube = new THREE.Mesh(snakeCubeGeometry, snakeMaterial);
@@ -1283,6 +1300,21 @@
             snakeCube.castShadow = true;
             snakeCube.receiveShadow = true;
           snakeNextGroup.add(snakeCube);
+
+          snake_next_array.unshift(nextTail);
+        var snakeCubeArray = snakeNextGroup.children;
+      
+        for(var i=0; i<snakeCubeArray.length; i++){
+          
+          var snake_position = snake_next_array[i];
+          
+          snakeCube = snakeCubeArray[i];
+          var snakeCubePosition = snakeCube.position;
+          snakeCubePosition.x = snakeCubeSize*snake_position.x;
+          snakeCubePosition.z = snakeCubeSize*snake_position.y;
+          
+          snakeCube.position.set( snakeCubePosition.x, snakeCubePosition.y, snakeCubePosition.z);
+        }
           }
       }
     };
