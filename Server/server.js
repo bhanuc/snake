@@ -10,7 +10,7 @@ server.listen(8080);
 console.log("holla, Snake Server is running");
 
 var room = {};
-
+var minas = 1;
 var wss = new WebSocketServer({
     server: server
 });
@@ -20,7 +20,6 @@ var wss = new WebSocketServer({
 //};
 
 wss.on('connection', function (ws) {
-    var random = setTimeout(function() { ws.send(JSON.stringify({"type": "render"}))}, 300);
 
     ws.on('message', function (message) {
         console.log(JSON.stringify(message), message);
@@ -138,6 +137,13 @@ wss.on('connection', function (ws) {
                     }
                 case "food":
                     if (room.hasOwnProperty(mess.room) && room[mess.room].length == 2) {
+                        if(minas){
+                            minas =0;
+                                var random = setTimeout(function() {
+                                  room[mess.room][0].ws.send(JSON.stringify({"type": "render"}))
+                                  room[mess.room][1].ws.send(JSON.stringify({"type": "render"}))
+                             }, 300);
+                        }
                         console.log("food");
                         if (mess.hasOwnProperty('room')) {
                             room[mess.room][0].ws.send(JSON.stringify({
