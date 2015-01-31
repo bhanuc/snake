@@ -532,30 +532,44 @@
                      }
              }
       }
-      
-      function setSnakeCube(){
+      function getSnakeHead(){
+        var snake1 = snake_array[0];
+        var snake2 = snake_next_array[0];
+
+        var obj = JSON.parse(localStorage.getItem("user"));
+          if(obj.id == 1)
+          {
+            var objtosend = {type:"position",id: obj.id, position: snake1, keyPress: keyPressed, room: obj.room, name: obj.room};
+            ws.send(JSON.stringify(objtosend));
+          } else if(obj.id == 2){
+            var objtosend = {type:"position",id: obj.id, position: snake2, keyPress: keyPressed, room: obj.room, name: obj.room};
+            ws.send(JSON.stringify(objtosend));
+          }
+
+      }
+      function setSnakeCubel(position, keyPress){
         var tail;
         var lightLamp = lightGroup.children[0];
         
-        snakeXStep = snake_array[0].x;
-        snakeYStep = snake_array[0].y;
+        snakeXStep = position.x;
+        snakeYStep = position.y;
 
         // snakeNextXStep = snake_next_array[0].x;
         // snakeNextYStep = snake_next_array[0].y;
         
-        if( keyPressed == "right"){
+        if( keyPress == "right"){
           snakeXStep++ ;
         
-        }else if(keyPressed == "left"){
+        }else if(keyPress == "left"){
           snakeXStep-- ;
           
-        }else if(keyPressed == "up"){
+        }else if(keyPress == "up"){
           snakeYStep-- ;    
               
-        }else if(keyPressed == "down"){
+        }else if(keyPress == "down"){
           snakeYStep++ ;    
         
-        }else if(keyPressed == "P"){
+        }else if(keyPress == "P"){
           pauseFlag = 1;
           
         }
@@ -617,27 +631,112 @@
           snakeCube.position.set( snakeCubePosition.x, snakeCubePosition.y, snakeCubePosition.z);
         }
       }
+      
+      // function setSnakeCube(){
+      //   var tail;
+      //   var lightLamp = lightGroup.children[0];
+        
+      //   snakeXStep = snake_array[0].x;
+      //   snakeYStep = snake_array[0].y;
 
-      function setNextSnakeCube(){
+      //   // snakeNextXStep = snake_next_array[0].x;
+      //   // snakeNextYStep = snake_next_array[0].y;
+        
+      //   if( keyPressed == "right"){
+      //     snakeXStep++ ;
+        
+      //   }else if(keyPressed == "left"){
+      //     snakeXStep-- ;
+          
+      //   }else if(keyPressed == "up"){
+      //     snakeYStep-- ;    
+              
+      //   }else if(keyPressed == "down"){
+      //     snakeYStep++ ;    
+        
+      //   }else if(keyPressed == "P"){
+      //     pauseFlag = 1;
+          
+      //   }
+        
+      //   if((snakeXStep == -1
+      //     || snakeXStep == platformWidth/snakeCubeSize
+      //     || snakeYStep == -1
+      //     || snakeYStep == platformHeight/snakeCubeSize
+      //     || check_collision(snakeXStep, snakeYStep, snake_array)))
+      //   {  
+      //     gameOverFlag = 1;
+      //     alertVisibleFlag = 1;
+      //     triggerAnimation("animated fadeInUp", 1, gameOverString);
+      //     return;
+      //   }
+        
+        
+      //   if(snakeXStep == food.x && snakeYStep == food.y)
+      //   {
+      //     tail = {x: snakeXStep, y: snakeYStep};  
+      //     console.log("1", tail);
+      //     // create_food();
+      //     var obj = JSON.parse(localStorage.getItem("user"));
+      //     if(obj.id == 2)
+      //     create_newfood();
+          
+      //     foodScore++;
+        
+      //     var snakeCubeGeometry = new THREE.CubeGeometry(snakeCubeSize, snakeCubeSize, snakeCubeSize);
+      //     snakeCube = new THREE.Mesh(snakeCubeGeometry, snakeMaterial);
+      //     snakeCube.position.set( snakeCubeSize*tail.x, snakeCubeSize, snakeCubeSize*tail.y );
+      //     snakeCube.castShadow = true;
+      //     snakeCube.receiveShadow = true;
+      //     snakeGroup.add(snakeCube);
+      
+      //     removeScoreTextGeometry();
+      //     setScoreTextGeometry(10*foodScore);
+          
+      //   }else
+      //   {
+      //     tail = snake_array.pop();
+      //     console.log("1", tail);
+      //     tail.x = snakeXStep;
+      //     tail.y = snakeYStep;
+      //   }
+        
+      //   snake_array.unshift(tail);
+      //   var snakeCubeArray = snakeGroup.children;
+      
+      //   for(var i=0; i<snakeCubeArray.length; i++){
+          
+      //     var snake_position = snake_array[i];
+          
+      //     snakeCube = snakeCubeArray[i];
+      //     var snakeCubePosition = snakeCube.position;
+      //     snakeCubePosition.x = snakeCubeSize*snake_position.x;
+      //     snakeCubePosition.z = snakeCubeSize*snake_position.y;
+          
+      //     snakeCube.position.set( snakeCubePosition.x, snakeCubePosition.y, snakeCubePosition.z);
+      //   }
+      // }
+
+      function setNextSnakeCubel(position, keyPress){
         var nextTail;
         var lightLamp = lightGroup.children[0];
 
-        snakeNextXStep = snake_next_array[0].x;
-        snakeNextYStep = snake_next_array[0].y;
+        snakeNextXStep = position.x;
+        snakeNextYStep = position.y;
         
-        if( keyNextPressed == "right"){
+        if( keyPress == "right"){
           snakeNextXStep++ ;
         
-        }else if(keyNextPressed == "left"){
+        }else if(keyPress == "left"){
           snakeNextXStep-- ;
           
-        }else if(keyNextPressed == "up"){
+        }else if(keyPress == "up"){
           snakeNextYStep-- ;    
               
-        }else if(keyNextPressed == "down"){
+        }else if(keyPress == "down"){
           snakeNextYStep++ ;    
         
-        }else if(keyNextPressed == "P"){
+        }else if(keyPress == "P"){
           pauseFlag = 1;
           
         }
@@ -699,6 +798,88 @@
           snakeCube.position.set( snakeCubePosition.x, snakeCubePosition.y, snakeCubePosition.z);
         }
       }
+
+      // function setNextSnakeCube(){
+      //   var nextTail;
+      //   var lightLamp = lightGroup.children[0];
+
+      //   snakeNextXStep = snake_next_array[0].x;
+      //   snakeNextYStep = snake_next_array[0].y;
+        
+      //   if( keyNextPressed == "right"){
+      //     snakeNextXStep++ ;
+        
+      //   }else if(keyNextPressed == "left"){
+      //     snakeNextXStep-- ;
+          
+      //   }else if(keyNextPressed == "up"){
+      //     snakeNextYStep-- ;    
+              
+      //   }else if(keyNextPressed == "down"){
+      //     snakeNextYStep++ ;    
+        
+      //   }else if(keyNextPressed == "P"){
+      //     pauseFlag = 1;
+          
+      //   }
+        
+      //   if((snakeNextXStep == -1
+      //     || snakeNextXStep == platformWidth/snakeCubeSize
+      //     || snakeNextYStep == -1
+      //     || snakeNextYStep == platformHeight/snakeCubeSize
+      //     || check_collision(snakeNextXStep, snakeNextYStep, snake_next_array)))
+      //   {  
+      //     gameOverFlag = 1;
+      //     alertVisibleFlag = 1;
+      //     triggerAnimation("animated fadeInUp", 1, gameOverString);
+      //     return;
+      //   }
+        
+        
+      //   if(snakeNextXStep == food.x && snakeNextYStep == food.y)
+      //   {
+      //     nextTail = {x: snakeNextXStep, y: snakeNextYStep};  
+      //     // create_food();
+      //     console.log("2", nextTail);
+      //     var obj = JSON.parse(localStorage.getItem("user"));
+      //     if(obj.id == 2)
+      //     create_newfood();
+          
+      //     foodNextScore++;
+        
+      //     var snakeCubeGeometry = new THREE.CubeGeometry(snakeCubeSize, snakeCubeSize, snakeCubeSize);
+      //     snakeCube = new THREE.Mesh(snakeCubeGeometry, snakeNextMaterial);
+      //     snakeCube.position.set( snakeCubeSize*nextTail.x, snakeCubeSize, snakeCubeSize*nextTail.y );
+      //     snakeCube.castShadow = true;
+      //     snakeCube.receiveShadow = true;
+      //     snakeNextGroup.add(snakeCube);
+      
+      //     //removeScoreTextGeometry();
+      //     //setScoreTextGeometry(10*foodNextScore);
+          
+      //   }else
+      //   {
+      //     nextTail = snake_next_array.pop();
+      //     console.log("2", nextTail);
+      //     nextTail.x = snakeNextXStep;
+      //     nextTail.y = snakeNextYStep;
+      //   }
+        
+      //   snake_next_array.unshift(nextTail);
+      //   var snakeCubeArray = snakeNextGroup.children;
+      
+      //   for(var i=0; i<snakeCubeArray.length; i++){
+          
+      //     var snake_position = snake_next_array[i];
+          
+      //     snakeCube = snakeCubeArray[i];
+      //     var snakeCubePosition = snakeCube.position;
+      //     snakeCubePosition.x = snakeCubeSize*snake_position.x;
+      //     snakeCubePosition.z = snakeCubeSize*snake_position.y;
+          
+      //     snakeCube.position.set( snakeCubePosition.x, snakeCubePosition.y, snakeCubePosition.z);
+      //   }
+      // }
       
       function check_collision(x, y, array){
         
@@ -1015,8 +1196,9 @@
         if(frameTime >= gameStepTime){
           
           if(pauseFlag==0 && gameOverFlag==0){
-            setSnakeCube();
-            setNextSnakeCube();
+            getSnakeHead();
+            // setSnakeCube();
+            // setNextSnakeCube();
             checkLevelRatio();
           }
           
@@ -1213,6 +1395,13 @@
           foodCube.scale.y = 0.5;
           foodCube.scale.z = 0.5;
           foodGroup.add(foodCube);
+        } else if(data.type == "position"){
+          var id = data.id;
+          if(id == 1){
+            setSnakeCubel(data.position, data.keyPress);
+          } else{
+            setNextSnakeCubel(data.position, data.keyPress);
+          }
         }
       };
       //console.log("1");
