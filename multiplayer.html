@@ -573,7 +573,7 @@
         {
           tail = {x: snakeXStep, y: snakeYStep};  
           // create_food();
-          var obj = JSON.parse({localStorage.getItem("user")});
+          var obj = JSON.parse(localStorage.getItem("user"));
           if(obj.id == 2)
           create_newfood();
           
@@ -653,7 +653,7 @@
         {
           nextTail = {x: snakeNextXStep, y: snakeNextYStep};  
           // create_food();
-          var obj = JSON.parse({localStorage.getItem("user")});
+          var obj = JSON.parse(localStorage.getItem("user"));
           if(obj.id == 2)
           create_newfood();
           
@@ -842,7 +842,7 @@
               
         create_food();
 
-        var obj = JSON.parse({localStorage.getItem("user")});
+        var obj = JSON.parse(localStorage.getItem("user"));
         if(obj.id == 2)
         create_newfood();
       
@@ -1120,7 +1120,7 @@
               create_3D_snake();
               create_next_3D_snake();
               // create_food();
-              var obj = JSON.parse({localStorage.getItem("user")});
+              var obj = JSON.parse(localStorage.getItem("user"));
               if(obj.id == 2)
               create_newfood();
 
