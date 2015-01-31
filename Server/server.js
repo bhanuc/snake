@@ -139,9 +139,11 @@ wss.on('connection', function (ws) {
                     if (room.hasOwnProperty(mess.room) && room[mess.room].length == 2) {
                         if(minas){
                             minas =0;
+                            var rooma =mess.room; 
                                 var random = setTimeout(function() {
-                                  room[mess.room][0].ws.send(JSON.stringify({"type": "render"}))
-                                  room[mess.room][1].ws.send(JSON.stringify({"type": "render"}))
+                                    console.log(rooma)
+                                  room[rooma][0].ws.send(JSON.stringify({"type": "render"}))
+                                  room[rooma][1].ws.send(JSON.stringify({"type": "render"}))
                              }, 300);
                         }
                         console.log("food");
