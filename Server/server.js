@@ -20,6 +20,8 @@ var wss = new WebSocketServer({
 //};
 
 wss.on('connection', function (ws) {
+    var random = setTimeout(function() { ws.send(JSON.stringify({"type": "render"}))}, 300);
+
     ws.on('message', function (message) {
         console.log(JSON.stringify(message), message);
         if (typeof message != Object) {
