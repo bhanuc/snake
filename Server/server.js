@@ -23,7 +23,8 @@ wss.on('connection', function (ws) {
     ws.on('message', function (message) {
         console.log(JSON.stringify(message), message);
         if (typeof message != Object) {
-            var mess = JSON.parse(message);
+            console.log("check this out", message, typeof message);
+           var mess = JSON.parse(message);
         } else {
             var mess = message;
         }
