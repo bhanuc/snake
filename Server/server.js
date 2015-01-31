@@ -116,6 +116,7 @@ wss.on('connection', function (ws) {
                                 "type": "move",
                                 "move": mess.move,
                                 "name": mess.name,
+                                "snake": mess.snake,
                                 "id": mess.id
                             }));
                             room[mess.room][1].ws.send(JSON.stringify({

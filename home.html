@@ -35,6 +35,48 @@ top: 50vh;
         body {
         	height: 100vh;
         }
+
+/*            #loader-wrapper .loader-section.section-left {
+        left: 0;
+    }
+    #loader-wrapper .loader-section.section-right {
+        right: 0;
+    }*/
+
+    /* Loaded styles */
+   .loader-wrapper-right {
+        -webkit-transform: translateX(-100%);  /* Chrome, Opera 15+, Safari 3.1+ */
+            -ms-transform: translateX(-100%);  /* IE 9 */
+                transform: translateX(-100%);  /* Firefox 16+, IE 10+, Opera */
+
+        -webkit-transition: all 0.7s 0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000);  /* Android 2.1+, Chrome 1-25, iOS 3.2-6.1, Safari 3.2-6  */
+                transition: all 0.7s 0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000);  /* Chrome 26, Firefox 16+, iOS 7+, IE 10+, Opera, Safari 6.1+  */
+    }
+    .loader-wrapper-left {
+        -webkit-transform: translateX(100%);  /* Chrome, Opera 15+, Safari 3.1+ */
+            -ms-transform: translateX(100%);  /* IE 9 */
+                transform: translateX(100%);  /* Firefox 16+, IE 10+, Opera */
+
+        -webkit-transition: all 0.7s 0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000);  /* Android 2.1+, Chrome 1-25, iOS 3.2-6.1, Safari 3.2-6  */
+                transition: all 0.7s 0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000);  /* Chrome 26, Firefox 16+, iOS 7+, IE 10+, Opera, Safari 6.1+  */
+    }
+    .loaded #loader {
+        opacity: 0;
+
+        -webkit-transition: all 0.3s ease-out;  /* Android 2.1+, Chrome 1-25, iOS 3.2-6.1, Safari 3.2-6  */
+                transition: all 0.3s ease-out;  /* Chrome 26, Firefox 16+, iOS 7+, IE 10+, Opera, Safari 6.1+  */
+
+    }
+    .loaded #loader-wrapper {
+        visibility: hidden;
+
+        -webkit-transform: translateY(-100%);  /* Chrome, Opera 15+, Safari 3.1+ */
+            -ms-transform: translateY(-100%);  /* IE 9 */
+                transform: translateY(-100%);  /* Firefox 16+, IE 10+, Opera */
+    
+        -webkit-transition: all 0.3s 1s ease-out;  /* Android 2.1+, Chrome 1-25, iOS 3.2-6.1, Safari 3.2-6  */
+                transition: all 0.3s 1s ease-out;  /* Chrome 26, Firefox 16+, iOS 7+, IE 10+, Opera, Safari 6.1+  */
+    }
         </style>
     <link rel="stylesheet" href="http://yui.yahooapis.com/combo?pure/0.5.0/base-min.css&pure/0.5.0/grids-min.css&pure/0.5.0/grids-responsive-min.css">
     </head>
@@ -44,10 +86,18 @@ top: 50vh;
     <div class="left" id="left"><h1 class="htitle">Single Player</h1></div>
     <div class="right" id="right"><h1  class="htitle">Multiplayer</h1></div>
 </div>
+<!-- <div id="main">
+ <!--            <div id="loader"></div> 
+
+            <div class="loader-section  left" ><h1 class="htitle">Single Player</h1></div>
+            <div class="loader-section right"><h1  class="htitle">Multiplayer</h1></div>
+
+        </div> -->
 <script type="text/javascript">
     $('.left').click(function() {
-        $("#left").css({ width: '100%' });  
-                            $("#right").css({ width: '0px' }) ;  
+        $( this ).toggleClass( "loader-wrapper-right" );
+        // $("#left").css({ width: '100%' });  
+        //                     $("#right").css({ width: '0px' }) ;  
 
   //                $( "#left" ).animate({
   //   width: '100%'
@@ -64,8 +114,10 @@ top: 50vh;
   //       $('#right').animate({width: '0%'});
         });
             $('#right').click(function() {
-                        $("#left").css({ width: '0px' });  
-        $("#right").css({ width: '100%' });  
+                        $( this ).toggleClass( "loader-wrapper-left" );
+
+        //                 $("#left").css({ width: '0px' });  
+        // $("#right").css({ width: '100%' });  
     });
 </script>
     </body>
