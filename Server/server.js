@@ -23,10 +23,11 @@ wss.on('connection', function (ws) {
     ws.on('message', function (message) {
         console.log(JSON.stringify(message), message);
         if (typeof message != Object) {
-            var mess = JSON.parse(message);
+            console.log("check this out", message);
+          //  var mess = JSON.parse(message);
         } else {
             var mess = message;
-        }
+       
         console.log("mess", mess);
         if (mess.hasOwnProperty('type')) {
             console.log("mes-sdfs", mess.type, mess.room);
@@ -158,10 +159,11 @@ wss.on('connection', function (ws) {
                         console.log("waiting for player");
                     }
                 }
-            }
+                }
         } else {
             console.log("no object");
         }
+    }
         // wss.broadcast(message);
     });
 });
