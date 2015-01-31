@@ -673,7 +673,7 @@
           snakeCube.receiveShadow = true;
           snakeNextGroup.add(snakeCube);
       
-          removeScoreTextGeometry();
+          removeNextScoreTextGeometry();
           setNextScoreTextGeometry(10*foodNextScore);
           
         }else
@@ -927,18 +927,6 @@
           scoreBoardGroup.add(scoreTextMesh);
       }
 
-      function setNextScoreTextLabelGeometry(){
-        
-          var scorePlatformWidth = platformWidth/1.5;
-          var textMaterial = new THREE.MeshBasicMaterial({ color: 0x00bbbb });
-                    
-          scoreNextTextMesh = new THREE.Mesh( getTextGeometry("Score", "gentilis"), textMaterial );
-          scoreNextTextMesh.castShadow = true;
-          scoreNextTextMesh.receiveShadow = true;
-          scoreNextTextMesh.position.set((platformWidth-scorePlatformWidth)*3/2+snakeCubeSize*3, snakeCubeSize*3.2, -snakeCubeSize);
-          scoreBoardGroup.add(scoreNextTextMesh);
-      }
-      
       function setScoreTextGeometry(scoreString){
         
           var scorePlatformWidth = platformWidth/1.5;
@@ -959,7 +947,7 @@
           scoreNextTextMesh = new THREE.Mesh( getTextGeometry(scoreString, "gentilis"), textMaterial );
           scoreNextTextMesh.castShadow = true;
           scoreNextTextMesh.receiveShadow = true;
-          scoreNextTextMesh.position.set((platformWidth-scorePlatformWidth)*3/2+snakeCubeSize*1, snakeCubeSize*3.2, -snakeCubeSize);
+          scoreNextTextMesh.position.set((platformWidth-scorePlatformWidth)*3/2+snakeCubeSize*3, snakeCubeSize*3.2, -snakeCubeSize);
           scoreBoardGroup.add(scoreNextTextMesh);
       }
 
