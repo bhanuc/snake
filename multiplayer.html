@@ -506,7 +506,7 @@
         {
                       row = Math.round(Math.random()*(platformWidth-snakeCubeSize)/snakeCubeSize);
                       col = Math.round(Math.random()*(platformHeight-snakeCubeSize)/snakeCubeSize);
-                      if(isEmptyCellMulti(row, col, snake_array)) {
+                      if(isEmptyCellMulti(row, col, snake_array, snake_next_array)) {
                 food = {
                   x: row,
                   y: col,
