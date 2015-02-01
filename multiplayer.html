@@ -594,7 +594,7 @@
   </head>
   <body>
     <div class="hideall" id="hideAll">
-      <div class="" id="loading" style="display:none;">
+      <div class="" id="loading">
             <div class="cont">
                 <div class="a"></div>
                 <div class="b"></div>
@@ -621,7 +621,7 @@
             <input id="name" placeholder="Name" style="
     padding: 14px;
     background: rgba(71, 192, 174, 0.6);" />
-            <button class="pure-button" onclick="start_room()" style="
+            <button class="pure-button"  onclick="start_room()" style="
     padding: 14px;">Allocate Room</button>
         </div>
     </div>
@@ -634,7 +634,7 @@
      function start_room(){
       var a = {type: "join", name: $("#name").val(), room: $("#room").val() };
         console.log(JSON.stringify(a));
-        $("#loading").css("display",true);
+        $("#roomrequest").css("display",true);
         ws.send(JSON.stringify(a));
       }
     $(window).load(function() {
