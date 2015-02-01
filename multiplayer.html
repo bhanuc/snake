@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/game.css">
     <link rel="stylesheet" href="css/animate.css">
     <link rel="stylesheet" href="css/snake.css">
+    <link rel="stylesheet" href="css/pure.css">
     <script>
       var ws = new WebSocket('ws://128.199.124.144:8080');
 
@@ -616,7 +617,7 @@
         <div id="roomrequest">
             <input id="room" placeholder="Room" />
             <input id="name" placeholder="Name" />
-            <button onclick="start_room()">Allocate Room</button>
+            <button class="pure-button" onclick="start_room()">Allocate Room</button>
         </div>
     </div>
     
@@ -1587,7 +1588,7 @@
   
      <canvas id="canvasframe" class="renderframe"></canvas>
     <div class="sectionBox" id="leftsection"><b>Controls:</b><br>Start/Restart: S<br>Movement: Arrow Keys<br>Pause: P<br>Resume: R<br><br><b>API:</b><br>
-         <button  onclick="sendmessage()">SEND M</button></div>
+         <button  class="pure-button" onclick="sendmessage()">SEND M</button></div>
             
     <div class="alertmessage" id="helpmessage">Waiting for another player to continue</div>
     <header id="headersection">Simple 3D Snake Game</header>
