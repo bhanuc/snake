@@ -663,9 +663,9 @@
           var objTosend = { type:"end",id: obj.id, name: obj.name, room: obj.room, killed: !(obj.id-1)+1}
           ws.send(JSON.stringify(objTosend));
 
-          gameOverFlag = 1;
-          alertVisibleFlag = 1;
-          triggerAnimation("animated fadeInUp", 1, gameOverString);
+          // gameOverFlag = 1;
+          // alertVisibleFlag = 1;
+          // triggerAnimation("animated fadeInUp", 1, gameOverString);
           return;
         }
         
@@ -1143,7 +1143,7 @@
                 triggerAnimation("animated fadeOutDown", 0, gameOverString);
               }else{
                 alertVisibleFlag = 0;
-                triggerAnimation("animated fadeOutDown", 0, gameStartString);
+                triggerAnimation("animated fadeOutDown", 0, "Waiting for another player. Have patience.");
               }
               
               var obj;
@@ -1320,10 +1320,17 @@
           sc[0] = data.score[1];
           var killed = data.killed;
           sc[killed-1] = sc[killed-1] -5;
+          var obj = JSON.parse(localStorage.getItem("user"));
           if(sc[1]>sc[0]){
-            triggerAnimation("animated fadeInUp", 1, "2 wins");
+            if(obj.id==1)
+            triggerAnimation("animated fadeInUp", 1, "You Lose");
+            if(obj.id==2)
+            triggerAnimation("animated fadeInUp", 1, "You Lose");
           } else{
-            triggerAnimation("animated fadeInUp", 1, "1 wins");
+            if(obj.id==1)
+            triggerAnimation("animated fadeInUp", 1, "You wins");
+            if(obj.id==2)
+            triggerAnimation("animated fadeInUp", 1, "You Lose");
           }
 
           
