@@ -1316,17 +1316,26 @@
           var sc = [];
           gameOverFlag = 1;
           alertVisibleFlag = 1;
+          var obj = JSON.parse(localStorage.getItem("user"));
+          if(obj.id==1){
           sc[1] = data.score[0];
           sc[0] = data.score[1];
+        } else{
+          sc[0] = data.score[0];
+          sc[1] = data.score[1];
+        }
+          console.log(killed);
           var killed = data.killed;
           sc[killed-1] = sc[killed-1] -5;
-          var obj = JSON.parse(localStorage.getItem("user"));
+          
           if(sc[1]>sc[0]){
+            console.log("2 wins");
             if(obj.id==1)
             triggerAnimation("animated fadeInUp", 1, "You Lose");
             if(obj.id==2)
             triggerAnimation("animated fadeInUp", 1, "You Wins");
           } else{
+            console.log("1 wins");
             if(obj.id==1)
             triggerAnimation("animated fadeInUp", 1, "You wins");
             if(obj.id==2)
