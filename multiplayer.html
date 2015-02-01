@@ -1314,8 +1314,8 @@
         
         cameraWithSnake = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
         
-        camera.position.set( platformWidth/2-4, platformHeight/2, platformSize*3/2.6);
-        camera.rotation.x += degToRad(-45);
+        camera.position.set( platformWidth/2-4, platformHeight, platformSize*3/2.6);
+        camera.rotation.x += degToRad(-60);
       
         renderer = new THREE.WebGLRenderer({canvas:container, antialias:true});
         
