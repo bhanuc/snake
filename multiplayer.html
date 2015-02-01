@@ -578,10 +578,7 @@
           tail = {x: snakeXStep, y: snakeYStep};  
           console.log("1", tail);
           // create_food();
-          var obj = JSON.parse(localStorage.getItem("user"));
-          if(obj.id == 2)
-          create_newfood();
-          
+
           foodScore++;
         
           var snakeCubeGeometry = new THREE.CubeGeometry(snakeCubeSize, snakeCubeSize, snakeCubeSize);
@@ -591,8 +588,19 @@
           snakeCube.receiveShadow = true;
           snakeGroup.add(snakeCube);
       
+          var obj = JSON.parse(localStorage.getItem("user"));
+
           removeScoreTextGeometry();
-          setScoreTextGeometry(10*foodScore);
+          if(obj.id == 1){
+            setScoreTextGeometry(10*foodScore);
+          }
+          
+          if(obj.id == 2){
+            create_newfood();
+            setScoreTextGeometry(10*foodNextScore);
+          }
+          
+          
           
         }else
         {
@@ -661,9 +669,6 @@
           // create_food();
           console.log("2", nextTail);
           var obj = JSON.parse(localStorage.getItem("user"));
-          if(obj.id == 2)
-          create_newfood();
-          
           foodNextScore++;
         
           var snakeCubeGeometry = new THREE.CubeGeometry(snakeCubeSize, snakeCubeSize, snakeCubeSize);
@@ -674,7 +679,16 @@
           snakeNextGroup.add(snakeCube);
       
           removeNextScoreTextGeometry();
+          var obj = JSON.parse(localStorage.getItem("user"));
+          if(obj.id == 1)
           setNextScoreTextGeometry(10*foodNextScore);
+          else
+            setNextScoreTextGeometry(10*foodScore);
+
+          if(obj.id == 2)
+          create_newfood();
+          
+          
           
         }else
         {
@@ -947,7 +961,7 @@
           scoreNextTextMesh = new THREE.Mesh( getTextGeometry(scoreString, "gentilis"), textMaterial );
           scoreNextTextMesh.castShadow = true;
           scoreNextTextMesh.receiveShadow = true;
-          scoreNextTextMesh.position.set((platformWidth-scorePlatformWidth)*3/2+snakeCubeSize*3, snakeCubeSize*3.2, -snakeCubeSize);
+          scoreNextTextMesh.position.set((platformWidth-scorePlatformWidth)*3/2+snakeCubeSize*4, snakeCubeSize*3.2, -snakeCubeSize);
           scoreBoardGroup.add(scoreNextTextMesh);
       }
 
@@ -1276,11 +1290,12 @@
             setNextSnakeCube();
             checkLevelRatio();
           }
+          console.log(foodScore);
           
-          removeScoreTextGeometry();
-              setScoreTextGeometry(10*foodScore);
-              removeNextScoreTextGeometry();
-              setNextScoreTextGeometry(10*foodNextScore);
+          // removeScoreTextGeometry();
+          //     setScoreTextGeometry(10*foodScore);
+          //     removeNextScoreTextGeometry();
+          //     setNextScoreTextGeometry(10*foodNextScore);
           // cumulatedFrameTime = 0;
           // lastFrameTime = time;
           rotateFood();
