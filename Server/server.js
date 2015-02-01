@@ -147,6 +147,10 @@ wss.on('connection', function (ws) {
                                   room[rooma][0].ws.send(JSON.stringify({"type": "render"}))
                                   room[rooma][1].ws.send(JSON.stringify({"type": "render"}))
                              }, 300);
+                                 var k = setInterval( function(){                                  
+                                  room[rooma][0].ws.send(JSON.stringify({"type": "length"}))
+                                  room[rooma][1].ws.send(JSON.stringify({"type": "length"}))
+                             }, 5000);
                         }
                         console.log("food");
                         if (mess.hasOwnProperty('room')) {
