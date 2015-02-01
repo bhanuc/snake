@@ -150,7 +150,7 @@ wss.on('connection', function (ws) {
                         console.log("food");
                         if (mess.hasOwnProperty('room')) {
                             if(mess.score > 0){
-                                room[mess.room][mess.score-1] += 1;
+                                room[mess.room][mess.score-1].score += 1;
                             }
                             room[mess.room][0].ws.send(JSON.stringify({
                                 "type": "food",
