@@ -569,9 +569,9 @@
           var obj = JSON.parse(localStorage.getItem("user"));
           var objTosend = { type:"end",id: obj.id, name: obj.name, room: obj.room, killed: obj.id}
           ws.send(JSON.stringify(objTosend));
-          gameOverFlag = 1;
-          alertVisibleFlag = 1;
-          triggerAnimation("animated fadeInUp", 1, gameOverString);
+          // gameOverFlag = 1;
+          // alertVisibleFlag = 1;
+          // triggerAnimation("animated fadeInUp", 1, gameOverString);
           return;
         }
         
@@ -1314,15 +1314,19 @@
           renderer.render(scene, camera);
         } else if(data.type == "end"){
           var sc = [];
+          gameOverFlag = 1;
+          alertVisibleFlag = 1;
           sc[1] = data.score[0];
           sc[0] = data.score[1];
           var killed = data.killed;
           sc[killed-1] = sc[killed-1] -5;
           if(sc[1]>sc[0]){
-            console.log("2 wins");
+            triggerAnimation("animated fadeInUp", 1, "2 wins");
           } else{
-            console.log("1 wins");
+            triggerAnimation("animated fadeInUp", 1, "1 wins");
           }
+
+          
         }
       };
       //console.log("1");
