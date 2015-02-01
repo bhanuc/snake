@@ -514,9 +514,10 @@
                   y: col,
                 };
                 var obj = JSON.parse(localStorage.getItem("user"));
+                
                 var a = {type:"food", room: obj.room, id: obj.id, food: food,name: obj.name };
                 console.log(a, JSON.stringify(a));
-              ws.send(JSON.stringify(a));
+                ws.send(JSON.stringify(a));
                 // var foodCubeGeometry = new THREE.SphereGeometry(snakeCubeSize, 20, 20);
                 // foodCube = new THREE.Mesh(foodCubeGeometry, foodcubeMaterial);
                 // foodCube.position.set( snakeCubeSize*food.x, snakeCubeSize, snakeCubeSize*food.y );
@@ -581,25 +582,25 @@
 
           foodScore++;
         
+          var obj = JSON.parse(localStorage.getItem("user"));
+          
+          create_newfood();
+          if(obj.id == 2){
+            
+            setScoreTextGeometry(10*foodNextScore);
+          }
+          
           var snakeCubeGeometry = new THREE.CubeGeometry(snakeCubeSize, snakeCubeSize, snakeCubeSize);
           snakeCube = new THREE.Mesh(snakeCubeGeometry, snakeMaterial);
           snakeCube.position.set( snakeCubeSize*tail.x, snakeCubeSize, snakeCubeSize*tail.y );
           snakeCube.castShadow = true;
           snakeCube.receiveShadow = true;
-          snakeGroup.add(snakeCube);
-      
-          var obj = JSON.parse(localStorage.getItem("user"));
+          snakeGroup.add(snakeCube);    
 
           removeScoreTextGeometry();
           if(obj.id == 1){
             setScoreTextGeometry(10*foodScore);
           }
-          
-          if(obj.id == 2){
-            create_newfood();
-            setScoreTextGeometry(10*foodNextScore);
-          }
-          
           
           
         }else
@@ -671,6 +672,13 @@
           var obj = JSON.parse(localStorage.getItem("user"));
           foodNextScore++;
         
+          
+          var obj = JSON.parse(localStorage.getItem("user"));
+          
+
+//          if(obj.id == 2)
+          create_newfood();
+
           var snakeCubeGeometry = new THREE.CubeGeometry(snakeCubeSize, snakeCubeSize, snakeCubeSize);
           snakeCube = new THREE.Mesh(snakeCubeGeometry, snakeNextMaterial);
           snakeCube.position.set( snakeCubeSize*nextTail.x, snakeCubeSize, snakeCubeSize*nextTail.y );
@@ -679,14 +687,11 @@
           snakeNextGroup.add(snakeCube);
       
           removeNextScoreTextGeometry();
-          var obj = JSON.parse(localStorage.getItem("user"));
+
           if(obj.id == 1)
           setNextScoreTextGeometry(10*foodNextScore);
           else
             setNextScoreTextGeometry(10*foodScore);
-
-          if(obj.id == 2)
-          create_newfood();
           
           
           
@@ -865,7 +870,7 @@
         create_food();
 
         var obj = JSON.parse(localStorage.getItem("user"));
-        if(obj.id == 2)
+//        if(obj.id == 2)
         create_newfood();
       
               var ambientLight = new THREE.AmbientLight(0xcccccc);
@@ -1164,7 +1169,7 @@
               create_next_3D_snake();
               // create_food();
               var obj = JSON.parse(localStorage.getItem("user"));
-              if(obj.id == 2)
+//              if(obj.id == 2)
               create_newfood();
 
               gameOverFlag = 0;
@@ -1272,7 +1277,7 @@
           localStorage.setItem("user", JSON.stringify({id : data.id, name: data.name, room : data.room, value:true}));
           $("#start").css("display", "none");
           initLoading();
-        } else if(data.type == "food"){
+        } else if(data.type == "food" && data.id == 2){
           var food = data.food;
           foodGroup.remove(foodGroup.children[0]); 
           var foodCubeGeometry = new THREE.SphereGeometry(snakeCubeSize, 20, 20);
