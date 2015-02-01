@@ -8,10 +8,15 @@
     <link rel="stylesheet" href="css/animate.css">
     <link rel="stylesheet" href="css/snake.css">
     <link rel="stylesheet" href="css/pure.css">
-    <audio id="audio_1" controls preload loop>
-  <source src="/sounds/bg.mp3">
-</audio>
+    <script src="/js/juicy.js"></script>
+
     <script>
+    var bg = new Howl({
+      urls: ['/sounds/bg.mp3']
+      }).play();
+    var eat = new Howl({
+                urls: ['/sounds/eat.mp3']
+                });
       var ws = new WebSocket('ws://128.199.124.144:8080');
 
       var wegGLSupportFlag = 1;
@@ -615,7 +620,7 @@
                 <div class="c"></div>
                 <div class="d"></div>
             </div>
-            <h1 id="loading"></h1><br>
+            <h1 id="loadingt"></h1><br>
         </div>
         <div id="roomrequest">
             <input id="room" placeholder="Room" style="
@@ -628,7 +633,7 @@
     padding: 14px;">Allocate Room</button>
         </div>
     </div>
-    
+    <audio src="/sounds/bg.mp3" preload="auto" />    
   
   
     <div>
@@ -1792,7 +1797,7 @@
         else if(data.type == "setid"){
           localStorage.clear();
           localStorage.setItem("user", JSON.stringify({id : data.id, name: data.name, room : data.room, value:true}));
-          $("#start").css("display", "none");
+          $("#loadingt").html("You have been connected. Waiting now for 2nd Player");
           initLoading();
         } else if(data.type == "food"){
           var food = data.food;
@@ -1806,7 +1811,7 @@
           foodCube.scale.y = 0.5;
           foodCube.scale.z = 0.5;
           foodGroup.add(foodCube);
-
+              eat.play();
           removeScoreTextGeometry();
           setScoreTextGeometry(10*data.score[1]);
           removeNextScoreTextGeometry();
