@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/game.css">
     <link rel="stylesheet" href="css/animate.css">
     <link rel="stylesheet" href="css/snake.css">
+    <link rel="stylesheet" href="css/pure.css">
     <script>
       var ws = new WebSocket('ws://128.199.124.144:8080');
 
@@ -87,33 +88,538 @@
       }
 
     </script>
-  
+   <style>
+        #loading {
+            margin-top: 60vh;
+            margin-left: 22.95vw;
+            color: white;
+            font-family: 'Bradley Hand ITC';
+        }
+        #roomrequest {
+            margin-top: 0vh;
+            margin-left: 35vw;
+            
+        }
+    </style>
+
+    <!--adhfnkdnjnfsdjnfojds-->
+    <style>
+        body {
+            font-family: "Lato";
+            background: #efecca;
+            color: #1d1d1d;
+            margin: 0;
+            padding: 0;
+        }
+
+        .loader {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 48.2842712474619px;
+            height: 48.2842712474619px;
+            margin-left: -24.14213562373095px;
+            margin-top: -24.14213562373095px;
+            border-radius: 100%;
+            -webkit-animation-name: loader;
+            animation-name: loader;
+            -webkit-animation-iteration-count: infinite;
+            animation-iteration-count: infinite;
+            -webkit-animation-timing-function: linear;
+            animation-timing-function: linear;
+            -webkit-animation-duration: 4s;
+            animation-duration: 4s;
+        }
+
+            .loader .side {
+                display: block;
+                width: 6px;
+                height: 20px;
+                background-color: #046380;
+                margin: 2px;
+                position: absolute;
+                border-radius: 50%;
+                -webkit-animation-duration: 1.5s;
+                animation-duration: 1.5s;
+                -webkit-animation-iteration-count: infinite;
+                animation-iteration-count: infinite;
+                -webkit-animation-timing-function: ease;
+                animation-timing-function: ease;
+            }
+
+                .loader .side:nth-child(1),
+                .loader .side:nth-child(5) {
+                    -webkit-transform: rotate(0deg);
+                    -ms-transform: rotate(0deg);
+                    transform: rotate(0deg);
+                    -webkit-animation-name: rotate0;
+                    animation-name: rotate0;
+                }
+
+                .loader .side:nth-child(3),
+                .loader .side:nth-child(7) {
+                    -webkit-transform: rotate(90deg);
+                    -ms-transform: rotate(90deg);
+                    transform: rotate(90deg);
+                    -webkit-animation-name: rotate90;
+                    animation-name: rotate90;
+                }
+
+                .loader .side:nth-child(2),
+                .loader .side:nth-child(6) {
+                    -webkit-transform: rotate(45deg);
+                    -ms-transform: rotate(45deg);
+                    transform: rotate(45deg);
+                    -webkit-animation-name: rotate45;
+                    animation-name: rotate45;
+                }
+
+                .loader .side:nth-child(4),
+                .loader .side:nth-child(8) {
+                    -webkit-transform: rotate(135deg);
+                    -ms-transform: rotate(135deg);
+                    transform: rotate(135deg);
+                    -webkit-animation-name: rotate135;
+                    animation-name: rotate135;
+                }
+
+                .loader .side:nth-child(1) {
+                    top: 24.14213562373095px;
+                    left: 48.2842712474619px;
+                    margin-left: -3px;
+                    margin-top: -10px;
+                    -webkit-animation-delay: 0;
+                    animation-delay: 0;
+                }
+
+                .loader .side:nth-child(2) {
+                    top: 41.21320343109277px;
+                    left: 41.21320343109277px;
+                    margin-left: -3px;
+                    margin-top: -10px;
+                    -webkit-animation-delay: 0;
+                    animation-delay: 0;
+                }
+
+                .loader .side:nth-child(3) {
+                    top: 48.2842712474619px;
+                    left: 24.14213562373095px;
+                    margin-left: -3px;
+                    margin-top: -10px;
+                    -webkit-animation-delay: 0;
+                    animation-delay: 0;
+                }
+
+                .loader .side:nth-child(4) {
+                    top: 41.21320343109277px;
+                    left: 7.07106781636913px;
+                    margin-left: -3px;
+                    margin-top: -10px;
+                    -webkit-animation-delay: 0;
+                    animation-delay: 0;
+                }
+
+                .loader .side:nth-child(5) {
+                    top: 24.14213562373095px;
+                    left: 0px;
+                    margin-left: -3px;
+                    margin-top: -10px;
+                    -webkit-animation-delay: 0;
+                    animation-delay: 0;
+                }
+
+                .loader .side:nth-child(6) {
+                    top: 7.07106781636913px;
+                    left: 7.07106781636913px;
+                    margin-left: -3px;
+                    margin-top: -10px;
+                    -webkit-animation-delay: 0;
+                    animation-delay: 0;
+                }
+
+                .loader .side:nth-child(7) {
+                    top: 0px;
+                    left: 24.14213562373095px;
+                    margin-left: -3px;
+                    margin-top: -10px;
+                    -webkit-animation-delay: 0;
+                    animation-delay: 0;
+                }
+
+                .loader .side:nth-child(8) {
+                    top: 7.07106781636913px;
+                    left: 41.21320343109277px;
+                    margin-left: -3px;
+                    margin-top: -10px;
+                    -webkit-animation-delay: 0;
+                    animation-delay: 0;
+                }
+
+        @-webkit-keyframes rotate0 {
+            0% {
+                -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+
+            60% {
+                -webkit-transform: rotate(180deg);
+                transform: rotate(180deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(180deg);
+                transform: rotate(180deg);
+            }
+        }
+
+        @keyframes rotate0 {
+            0% {
+                -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+
+            60% {
+                -webkit-transform: rotate(180deg);
+                transform: rotate(180deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(180deg);
+                transform: rotate(180deg);
+            }
+        }
+
+        @-webkit-keyframes rotate90 {
+            0% {
+                -webkit-transform: rotate(90deg);
+                transform: rotate(90deg);
+            }
+
+            60% {
+                -webkit-transform: rotate(270deg);
+                transform: rotate(270deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(270deg);
+                transform: rotate(270deg);
+            }
+        }
+
+        @keyframes rotate90 {
+            0% {
+                -webkit-transform: rotate(90deg);
+                transform: rotate(90deg);
+            }
+
+            60% {
+                -webkit-transform: rotate(270deg);
+                transform: rotate(270deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(270deg);
+                transform: rotate(270deg);
+            }
+        }
+
+        @-webkit-keyframes rotate45 {
+            0% {
+                -webkit-transform: rotate(45deg);
+                transform: rotate(45deg);
+            }
+
+            60% {
+                -webkit-transform: rotate(225deg);
+                transform: rotate(225deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(225deg);
+                transform: rotate(225deg);
+            }
+        }
+
+        @keyframes rotate45 {
+            0% {
+                -webkit-transform: rotate(45deg);
+                transform: rotate(45deg);
+            }
+
+            60% {
+                -webkit-transform: rotate(225deg);
+                transform: rotate(225deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(225deg);
+                transform: rotate(225deg);
+            }
+        }
+
+        @-webkit-keyframes rotate135 {
+            0% {
+                -webkit-transform: rotate(135deg);
+                transform: rotate(135deg);
+            }
+
+            60% {
+                -webkit-transform: rotate(315deg);
+                transform: rotate(315deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(315deg);
+                transform: rotate(315deg);
+            }
+        }
+
+        @keyframes rotate135 {
+            0% {
+                -webkit-transform: rotate(135deg);
+                transform: rotate(135deg);
+            }
+
+            60% {
+                -webkit-transform: rotate(315deg);
+                transform: rotate(315deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(315deg);
+                transform: rotate(315deg);
+            }
+        }
+
+        @-webkit-keyframes loader {
+            0% {
+                -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes loader {
+            0% {
+                -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+    <style>
+        html {
+            background: #111;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .cont {
+            position: absolute;
+            width: 40px;
+            height: 140px;
+            margin: auto;
+            -webkit-animation: rotate 10s linear infinite;
+            animation: rotate 10s linear infinite;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+        }
+
+            .cont:nth-child(2) {
+                -webkit-animation: rotate 10s linear infinite;
+                animation: rotate 10s linear infinite;
+                -webkit-animation-delay: -5s;
+                animation-delay: -5s;
+            }
+
+            .cont:nth-child(3) {
+                -webkit-animation: rotate 10s linear infinite;
+                animation: rotate 10s linear infinite;
+                -webkit-animation-delay: -2.5s;
+                animation-delay: -2.5s;
+            }
+
+            .cont:nth-child(4) {
+                -webkit-animation: rotate 10s linear infinite;
+                animation: rotate 10s linear infinite;
+                -webkit-animation-delay: -7.5s;
+                animation-delay: -7.5s;
+            }
+
+        .a, .b, .c, .d {
+            width: 40px;
+            height: 40px;
+            position: absolute;
+        }
+
+            .a:after, .b:after, .c:after, .d:after {
+                display: block;
+                content: "";
+                -webkit-transform: scale(0.5);
+                -ms-transform: scale(0.5);
+                transform: scale(0.5);
+                width: 40px;
+                height: 40px;
+                border-radius: 100%;
+            }
+
+        .a {
+            -webkit-animation: move 2s ease-in-out infinite alternate, zIndex 4s ease-in-out infinite;
+            animation: move 2s ease-in-out infinite alternate, zIndex 4s ease-in-out infinite;
+        }
+
+        .b {
+            -webkit-animation: move 2s ease-in-out infinite alternate-reverse, zIndex 4s ease-in-out infinite reverse;
+            animation: move 2s ease-in-out infinite alternate-reverse, zIndex 4s ease-in-out infinite reverse;
+        }
+
+        .a:after {
+            background: #75c7f0;
+            -webkit-animation: zoom 2s ease-in-out infinite alternate;
+            animation: zoom 2s ease-in-out infinite alternate;
+            -webkit-animation-delay: -1s;
+            animation-delay: -1s;
+        }
+
+        .b:after {
+            background: #8152e0;
+            -webkit-animation: zoom 2s ease-in-out infinite alternate-reverse;
+            animation: zoom 2s ease-in-out infinite alternate-reverse;
+            -webkit-animation-delay: -1s;
+            animation-delay: -1s;
+        }
+
+        .c {
+            -webkit-animation: move 2s ease-in-out infinite alternate, zIndex 4s ease-in-out infinite;
+            animation: move 2s ease-in-out infinite alternate, zIndex 4s ease-in-out infinite;
+            -webkit-animation-delay: -1s, -1s;
+            animation-delay: -1s, -1s;
+        }
+
+        .d {
+            -webkit-animation: move 2s ease-in-out infinite alternate-reverse, zIndex 4s ease-in-out infinite reverse;
+            animation: move 2s ease-in-out infinite alternate-reverse, zIndex 4s ease-in-out infinite reverse;
+            -webkit-animation-delay: -1s, -1s;
+            animation-delay: -1s, -1s;
+        }
+
+        .c:after {
+            background: #e05252;
+            -webkit-animation: zoom 2s ease-in-out infinite alternate;
+            animation: zoom 2s ease-in-out infinite alternate;
+            -webkit-animation-delay: -2s;
+            animation-delay: -2s;
+        }
+
+        .d:after {
+            background: #f0f075;
+            -webkit-animation: zoom 2s ease-in-out infinite alternate-reverse;
+            animation: zoom 2s ease-in-out infinite alternate-reverse;
+            -webkit-animation-delay: -2s;
+            animation-delay: -2s;
+        }
+
+        @-webkit-keyframes move {
+            100% {
+                -webkit-transform: translateY(250%);
+                transform: translateY(250%);
+            }
+        }
+
+        @keyframes move {
+            100% {
+                -webkit-transform: translateY(250%);
+                transform: translateY(250%);
+            }
+        }
+
+        @-webkit-keyframes zoom {
+            100% {
+                -webkit-transform: scale(1);
+                transform: scale(1);
+            }
+        }
+
+        @keyframes zoom {
+            100% {
+                -webkit-transform: scale(1);
+                transform: scale(1);
+            }
+        }
+
+        @-webkit-keyframes zIndex {
+            25% {
+                z-index: 1;
+            }
+
+            75% {
+                z-index: -1;
+            }
+        }
+
+        @keyframes zIndex {
+            25% {
+                z-index: 1;
+            }
+
+            75% {
+                z-index: -1;
+            }
+        }
+
+        @-webkit-keyframes rotate {
+            to {
+                -webkit-transform: rotateZ(360deg);
+                transform: rotateZ(360deg);
+            }
+        }
+
+        @keyframes rotate {
+            to {
+                -webkit-transform: rotateZ(360deg);
+                transform: rotateZ(360deg);
+            }
+        }
+    </style>
   </head>
   <body>
     <div class="hideall" id="hideAll">
-      <div class="loading" id="loading">
-          <br>
-            <b>Simple 3D Snake Game</b>
-          <br><br>
-          <b>Developer:</b>
-          <a href="" target="_blank">Aam Aadmi Programmers</a>
-          <br><br>
-          <div id="gamehelp">
-            Checking WebGL Support...
-          </div>
-          <center>
-          <div class="progress-bar grey stripes" id="progressBarControl">
-              <span style="width: 100%"></span>
-          </div>
-        </center>
+      <div class="" id="loading">
+            <div class="cont">
+                <div class="a"></div>
+                <div class="b"></div>
+            </div>
+            <div class="cont">
+                <div class="a"></div>
+                <div class="b"></div>
+            </div>
 
-      </div>
-      <div id="start">
-        <input id="room" placeholder="Room"/>
-        <input id="name" placeholder="Name"/>
-        <button onclick="start_room()">Allocate Room</button>
-      </div>
-    </div>  
+            <div class="cont">
+                <div class="c"></div>
+                <div class="d"></div>
+            </div>
+            <div class="cont">
+                <div class="c"></div>
+                <div class="d"></div>
+            </div>
+            <h1 id="loading">Loading...</h1>
+        </div>
+        <div id="roomrequest">
+            <input id="room" placeholder="Room" />
+            <input id="name" placeholder="Name" />
+            <button class="pure-button" onclick="start_room()">Allocate Room</button>
+        </div>
+    </div>
     
   
   
@@ -1082,7 +1588,7 @@
   
      <canvas id="canvasframe" class="renderframe"></canvas>
     <div class="sectionBox" id="leftsection"><b>Controls:</b><br>Start/Restart: S<br>Movement: Arrow Keys<br>Pause: P<br>Resume: R<br><br><b>API:</b><br>
-         <button  onclick="sendmessage()">SEND M</button></div>
+         <button  class="pure-button" onclick="sendmessage()">SEND M</button></div>
             
     <div class="alertmessage" id="helpmessage">Waiting for another player to continue</div>
     <header id="headersection">Simple 3D Snake Game</header>
