@@ -566,6 +566,9 @@
           || snakeYStep == platformHeight/snakeCubeSize
           || check_collision(snakeXStep, snakeYStep, snake_array)))
         {  
+          var obj = JSON.parse(localStorage.getItem("user"));
+          var objTosend = { type:"end",id: obj.id, name: obj.name, room: obj.room, killed: obj.id}
+          ws.send(JSON.stringify(objTosend));
           gameOverFlag = 1;
           alertVisibleFlag = 1;
           triggerAnimation("animated fadeInUp", 1, gameOverString);
@@ -656,6 +659,10 @@
           || snakeNextYStep == platformHeight/snakeCubeSize
           || check_collision(snakeNextXStep, snakeNextYStep, snake_next_array)))
         {  
+          var obj = JSON.parse(localStorage.getItem("user"));
+          var objTosend = { type:"end",id: obj.id, name: obj.name, room: obj.room, killed: !(obj.id-1)+1}
+          ws.send(JSON.stringify(objTosend));
+
           gameOverFlag = 1;
           alertVisibleFlag = 1;
           triggerAnimation("animated fadeInUp", 1, gameOverString);
@@ -1286,9 +1293,9 @@
           foodGroup.add(foodCube);
 
           removeScoreTextGeometry();
-          setScoreTextGeometry(10*data.score[0]);
+          setScoreTextGeometry(10*data.score[1]);
           removeNextScoreTextGeometry();
-          setNextScoreTextGeometry(10*data.score[1]);
+          setNextScoreTextGeometry(10*data.score[0]);
         } else if(data.type == "render"){
             if(pauseFlag==0 && gameOverFlag==0){
             setSnakeCube();
@@ -1305,6 +1312,17 @@
           // lastFrameTime = time;
           rotateFood();
           renderer.render(scene, camera);
+        } else if(data.type == "end"){
+          var sc = [];
+          sc[1] = data.score[0];
+          sc[0] = data.score[1];
+          var killed = data.killed;
+          sc[killed-1] = sc[killed-1] -5;
+          if(sc[1]>sc[0]){
+            console.log("2 wins");
+          } else{
+            console.log("1 wins");
+          }
         }
       };
       //console.log("1");
