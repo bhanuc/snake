@@ -164,7 +164,7 @@ wss.on('connection', function (ws) {
                                 "food": mess.food,
                                 "name": mess.name,
                                 "id": mess.id,
-                                "score":  [room[mess.room][0].score,room[mess.room][1].score]
+                                "score":  [room[mess.room][1].score,room[mess.room][0].score]
                             }));
                         } else {
                             ws.send(JSON.stringify({
