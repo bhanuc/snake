@@ -1314,8 +1314,8 @@
           renderer.render(scene, camera);
         } else if(data.type == "end"){
           var sc = [];
-          var sc[1] = data.score[0];
-          var sc[0] = data.score[1];
+          sc[1] = data.score[0];
+          sc[0] = data.score[1];
           var killed = data.killed;
           sc[killed-1] = sc[killed-1] -5;
           if(sc[1]>sc[0]){
