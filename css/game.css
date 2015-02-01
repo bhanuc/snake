@@ -85,7 +85,7 @@ header {
 	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
 	filter: alpha(opacity=0);
 	opacity: 0.0;
-	background-image: -webkit-gradient( linear, left bottom, left top, color-stop(0.25, rgba(128,128,128,0.8)), color-stop(1, rgba(204,204,204,0.8)) );
+	background-image: -webkit-gradient( linear, left bottom, left top, color-stop(0.25, rgba(0,0,0,0.8)), color-stop(1, rgba(204,204,204,0.8)) );
 
 	background-image: -webkit-linear-gradient( center bottom, rgba(110,110,110,0.8) 25%, rgba(220,220,220,0.8) 100% );
 	background-image: -moz-linear-gradient( center bottom, rgba(110,110,110,0.8) 25%, rgba(220,220,220,0.8) 100% );
