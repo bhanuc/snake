@@ -612,28 +612,12 @@
                 <div class="c"></div>
                 <div class="d"></div>
             </div>
-            <h1 id="loading"></h1><br><br>
+            <h1 id="loading">Loading...</h1>
         </div>
         <div id="roomrequest">
-        <form class="pure-form">
-    <fieldset>
-        <input type="room" id="room" placeholder="Room Name" style="
-    background: rgba(22, 140, 100, 0.7);
-    border: rgba(22, 140, 100, 0.7);
-    padding: 14px;
-    margin: 1px solid black;
-">
-        <input type="name" id="name" placeholder="Your Name" style="
-    background: rgba(22, 140, 100, 0.7);
-    border: rgba(22, 140, 100, 0.7);
-    padding: 14px;
-    margin: 1px solid black;
-">
-            <button class="pure-button" onclick="start_room()" style="
-    padding: 14px;
-">Allocate Room</button>
-    </fieldset>
-</form>
+            <input id="room" placeholder="Room" />
+            <input id="name" placeholder="Name" />
+            <button class="pure-button" onclick="start_room()">Allocate Room</button>
         </div>
     </div>
     
@@ -1314,8 +1298,8 @@
         
         cameraWithSnake = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
         
-        camera.position.set( platformWidth/2-4, platformHeight, platformSize*3/2.6);
-        camera.rotation.x += degToRad(-60);
+        camera.position.set( platformWidth/2-4, platformHeight/2, platformSize*3/2.6);
+        camera.rotation.x += degToRad(-45);
       
         renderer = new THREE.WebGLRenderer({canvas:container, antialias:true});
         
