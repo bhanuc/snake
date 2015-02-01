@@ -594,7 +594,7 @@
   </head>
   <body>
     <div class="hideall" id="hideAll">
-      <div class="" id="loading">
+      <div class="" id="loading" style="display:none;">
             <div class="cont">
                 <div class="a"></div>
                 <div class="b"></div>
@@ -629,6 +629,7 @@
      function start_room(){
       var a = {type: "join", name: $("#name").val(), room: $("#room").val() };
         console.log(JSON.stringify(a));
+        $("#loading").css("display",true);
         ws.send(JSON.stringify(a));
       }
     $(window).load(function() {
