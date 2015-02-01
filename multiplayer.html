@@ -1324,9 +1324,10 @@
           sc[0] = data.score[0];
           sc[1] = data.score[1];
         }
-          console.log(killed);
+          
           var killed = data.killed;
-          sc[killed-1] = sc[killed-1] -5;
+          console.log(killed);
+          sc[!(killed-1)] = sc[!(killed-1)] -5;
           
           if(sc[1]>sc[0]){
             console.log("2 wins");
@@ -1343,6 +1344,60 @@
           }
 
           
+        } else if(data.type == "length"){
+          snakeNextXStep = snake_next_array[0].x;
+          snakeNextYStep = snake_next_array[0].y;
+          nextTail = {x: snakeNextXStep, y: snakeNextYStep};  
+          var snakeCubeGeometry = new THREE.CubeGeometry(snakeCubeSize, snakeCubeSize, snakeCubeSize);
+          snakeCube = new THREE.Mesh(snakeCubeGeometry, snakeNextMaterial);
+          snakeCube.position.set( snakeCubeSize*nextTail.x, snakeCubeSize, snakeCubeSize*nextTail.y );
+          snakeCube.castShadow = true;
+          snakeCube.receiveShadow = true;
+          snakeNextGroup.add(snakeCube);
+
+          snake_next_array.unshift(nextTail);
+        var snakeCubeArray = snakeNextGroup.children;
+      
+        for(var i=0; i<snakeCubeArray.length; i++){
+          
+          var snake_position = snake_next_array[i];
+          
+          snakeCube = snakeCubeArray[i];
+          var snakeCubePosition = snakeCube.position;
+          snakeCubePosition.x = snakeCubeSize*snake_position.x;
+          snakeCubePosition.z = snakeCubeSize*snake_position.y;
+          
+          snakeCube.position.set( snakeCubePosition.x, snakeCubePosition.y, snakeCubePosition.z);
+
+        }
+
+          snakeXStep = snake_array[0].x;
+          snakeYStep = snake_array[0].y;
+          tail = {x: snakeXStep, y: snakeYStep}; 
+          var snakeCubeGeometry = new THREE.CubeGeometry(snakeCubeSize, snakeCubeSize, snakeCubeSize);
+          snakeCube = new THREE.Mesh(snakeCubeGeometry, snakeMaterial);
+          snakeCube.position.set( snakeCubeSize*tail.x, snakeCubeSize, snakeCubeSize*tail.y );
+          snakeCube.castShadow = true;
+          snakeCube.receiveShadow = true;
+          snakeGroup.add(snakeCube);
+
+          snake_array.unshift(tail);
+        var snakeCubeArray = snakeGroup.children;
+      
+        for(var i=0; i<snakeCubeArray.length; i++){
+          
+          var snake_position = snake_array[i];
+          
+          snakeCube = snakeCubeArray[i];
+          var snakeCubePosition = snakeCube.position;
+          snakeCubePosition.x = snakeCubeSize*snake_position.x;
+          snakeCubePosition.z = snakeCubeSize*snake_position.y;
+          
+          snakeCube.position.set( snakeCubePosition.x, snakeCubePosition.y, snakeCubePosition.z);
+        }
+
+        }
+      
         }
       };
       //console.log("1");
