@@ -68,7 +68,7 @@ wss.on('connection', function (ws) {
                             room[mess.room].push({
                                 'id': 2,
                                 'ws': ws,
-                                'score': [0,0]
+                                'score': 0
                             });
                             console.log(room[mess.room], room[mess.room].length)
                             room[mess.room][0].ws.send(JSON.stringify({
@@ -94,7 +94,7 @@ wss.on('connection', function (ws) {
                         room[mess.room] = [{
                             'id': 1,
                             'ws': ws,
-                            'score': [0,0]
+                            'score': 0
                                         }];
 
                         room[mess.room][0].ws.send(JSON.stringify({
