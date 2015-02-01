@@ -67,7 +67,8 @@ wss.on('connection', function (ws) {
                         } else {
                             room[mess.room].push({
                                 'id': 2,
-                                'ws': ws
+                                'ws': ws,
+                                'score': [0,0]
                             });
                             console.log(room[mess.room], room[mess.room].length)
                             room[mess.room][0].ws.send(JSON.stringify({
@@ -92,7 +93,8 @@ wss.on('connection', function (ws) {
                     } else {
                         room[mess.room] = [{
                             'id': 1,
-                            'ws': ws
+                            'ws': ws,
+                            'score': [0,0]
                                         }];
 
                         room[mess.room][0].ws.send(JSON.stringify({
@@ -147,17 +149,22 @@ wss.on('connection', function (ws) {
                         }
                         console.log("food");
                         if (mess.hasOwnProperty('room')) {
+                            if(mess.score > 0){
+                                room[mess.room][mess.score-1] += 1;
+                            }
                             room[mess.room][0].ws.send(JSON.stringify({
                                 "type": "food",
                                 "food": mess.food,
                                 "name": mess.name,
-                                "id": mess.id
+                                "id": mess.id,
+                                "score": [room[mess.room][0].score,room[mess.room][1].score]
                             }));
                             room[mess.room][1].ws.send(JSON.stringify({
                                 "type": "food",
                                 "food": mess.food,
                                 "name": mess.name,
-                                "id": mess.id
+                                "id": mess.id,
+                                "score":  [room[mess.room][0].score,room[mess.room][1].score]
                             }));
                         } else {
                             ws.send(JSON.stringify({
