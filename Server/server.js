@@ -240,14 +240,14 @@ wss.on('connection', function (ws) {
                         console.log("end");
                         if (mess.hasOwnProperty('room')) {
                             room[mess.room][0].ws.send(JSON.stringify({
-                                "type": "add",
+                                "type": "end",
                                 "killed": mess.killed,
                                 "score": [room[mess.room][0].score,room[mess.room][1].score],
                                 "name": mess.name,
                                 "id": mess.id
                             }));
                             room[mess.room][1].ws.send(JSON.stringify({
-                                "type": "add",
+                                "type": "end",
                                 "killed": mess.killed,
                                 "score": [room[mess.room][1].score,room[mess.room][0].score],
                                 "name": mess.name,
