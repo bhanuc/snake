@@ -10,7 +10,6 @@ server.listen(8080);
 console.log("holla, Snake Server is running");
 
 var room = {};
-var minas = 1;
 var wss = new WebSocketServer({
     server: server
 });
@@ -94,7 +93,8 @@ wss.on('connection', function (ws) {
                         room[mess.room] = [{
                             'id': 1,
                             'ws': ws,
-                            'score': 0
+                            'score': 0,
+                            'minas': 1
                                         }];
 
                         room[mess.room][0].ws.send(JSON.stringify({
@@ -139,8 +139,9 @@ wss.on('connection', function (ws) {
                     }
                 case "food":
                     if (room.hasOwnProperty(mess.room) && room[mess.room].length == 2) {
-                        if(minas){
-                            minas =0;
+
+                        if(room[mess.room][0].minas){
+                            room[mess.room][0].minas =0;
                             var rooma =mess.room; 
                                 var k = setInterval( function(){                                  
                                   room[rooma][0].ws.send(JSON.stringify({"type": "render"}))
@@ -221,6 +222,34 @@ wss.on('connection', function (ws) {
                                 "type": "add",
                                 "add": mess.add,
                                 "tail": mess.tail,
+                                "name": mess.name,
+                                "id": mess.id
+                            }));
+                        } else {
+                            ws.send(JSON.stringify({
+                                "type": "error",
+                                'error': 'Please Use a Room'
+                            }));
+                        }
+                        break;
+                    } else {
+                        console.log("waiting for player");
+                    }
+                    case "end":
+                    if (room.hasOwnProperty(mess.room) && room[mess.room].length == 2) {
+                        console.log("end");
+                        if (mess.hasOwnProperty('room')) {
+                            room[mess.room][0].ws.send(JSON.stringify({
+                                "type": "add",
+                                "killed": mess.killed,
+                                "score": [room[mess.room][0].score,room[mess.room][1].score],
+                                "name": mess.name,
+                                "id": mess.id
+                            }));
+                            room[mess.room][1].ws.send(JSON.stringify({
+                                "type": "add",
+                                "killed": mess.killed,
+                                "score": [room[mess.room][1].score,room[mess.room][0].score],
                                 "name": mess.name,
                                 "id": mess.id
                             }));
